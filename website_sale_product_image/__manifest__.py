@@ -3,8 +3,7 @@
     'name': "website_sale_product_image",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        mejora en la función de subir múltiples imagenes a los productos""",
 
     'description': """
         Long description of module's purpose
