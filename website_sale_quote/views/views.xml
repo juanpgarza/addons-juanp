@@ -1,60 +1,19 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="website_sale_quote.list">
-      <field name="name">website_sale_quote list</field>
-      <field name="model">website_sale_quote.website_sale_quote</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+        <record id="view_order_form_web_quote" model="ir.ui.view">
+            <field name="name">sale.order.form.web.quote</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_quotation_send'][1]" position="replace">
+                   <button name="action_quotation_send" string="Send by Email" type="object" states="draft,request" class="btn-primary"/>
+                </xpath>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="website_sale_quote.action_window">
-      <field name="name">website_sale_quote window</field>
-      <field name="res_model">website_sale_quote.website_sale_quote</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+                <xpath expr="//button[@name='print_quotation'][1]" position="replace">
+                   <button name="print_quotation" string="Print" type="object" states="draft,request" class="btn-primary o_sale_print"/>
+                </xpath>               
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="website_sale_quote.action_server">
-      <field name="name">website_sale_quote server</field>
-      <field name="model_id" ref="model_website_sale_quote_website_sale_quote"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="website_sale_quote" id="website_sale_quote.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="website_sale_quote.menu_1" parent="website_sale_quote.menu_root"/>
-    <menuitem name="Menu 2" id="website_sale_quote.menu_2" parent="website_sale_quote.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="website_sale_quote.menu_1_list" parent="website_sale_quote.menu_1"
-              action="website_sale_quote.action_window"/>
-    <menuitem name="Server to list" id="website_sale_quote" parent="website_sale_quote.menu_2"
-              action="website_sale_quote.action_server"/>
-    -->
+            </field>
+        </record>
   </data>
 </odoo>

@@ -20,7 +20,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['website_sale','website_sale_checkout_skip_payment'],
+    'depends': ['website_sale','website_sale_checkout_skip_payment','sale'],
 
     # always loaded
     'data': [
