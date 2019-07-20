@@ -22,7 +22,8 @@
             <t t-call="portal.portal_layout">
                 <t t-set="sales_order" t-value="quotation"/> <!-- rename to ensure breadcrumb compatibility with website_portal_sale's portal_layout inheritance -->
                 <body data-spy="scroll" data-target=".navspy" data-offset="50">
-                    <p>El presupuesto está en preparación</p>
+                    <br></br>
+                    <h4>El presupuesto está en preparación</h4>
                 </body>
             </t>
         </template>
@@ -42,6 +43,26 @@
                     <t t-else="">Order</t>
                     <t t-esc="sales_order.name"/>
                 </li>
+            </xpath>
+        </template>
+
+
+        <template id="header" inherit_id="website_sale.header" name="Header Shop My Cart Link" priority="30">
+            <xpath expr="//header//ul[@id='top_menu']/li[@id='my_cart']" position="replace">
+                <li id="my_cart" t-att-class="'' if website_sale_order and website_sale_order.cart_quantity else 'hidden'">
+                    <a href="/shop/cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        Mi presupuesto <sup t-attf-class="my_cart_quantity label label-primary" t-esc="website_sale_order and website_sale_order.cart_quantity or ''" />
+                    </a>
+                </li>
+            </xpath>
+        </template>
+
+        <template id="product_price" inherit_id="website_sale.product_price">
+            <xpath expr="//div[@itemprop='offers']/h4[1]" position="attributes">
+                <attribute name="class">
+                    oe_price_h4 css_editable_mode_hidden hidden
+                </attribute>
             </xpath>
         </template>
 

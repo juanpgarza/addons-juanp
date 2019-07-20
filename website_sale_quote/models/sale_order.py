@@ -7,7 +7,7 @@ class SaleOrder(models.Model):
 
     state = fields.Selection([
         ('draft', 'Quotation'),
-        ('request', 'Quote Request'),
+        ('request', 'Presupuesto Solicitado'),
         ('sent', 'Quotation Sent'),
         ('sale', 'Sales Order'),
         ('done', 'Locked'),
