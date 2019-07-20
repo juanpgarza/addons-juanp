@@ -9,5 +9,41 @@
                 <td><span t-field="quotation.state"/></td>
             </xpath>
         </template>
+
+        <template id="request_quote" name="Presupuesto pendiente">
+            <t t-call="website.layout">
+                <div id="wrap" class="container">
+                    <h1>El presupuesto está en preparación</h1>
+                </div>
+            </t>
+        </template>
+
+        <template id="request_quote_1" name="Product Quotation">
+            <t t-call="portal.portal_layout">
+                <t t-set="sales_order" t-value="quotation"/> <!-- rename to ensure breadcrumb compatibility with website_portal_sale's portal_layout inheritance -->
+                <body data-spy="scroll" data-target=".navspy" data-offset="50">
+                    <p>El presupuesto está en preparación</p>
+                </body>
+            </t>
+        </template>
+
+        <template id="portal_my_home_menu_sale" name="Portal layout : sales menu entries" inherit_id="portal.portal_layout" priority="10">
+            <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+                <li t-if="page_name == 'quote' or sales_order and sales_order.state in ('sent', 'cancel', 'request')">
+                    <a t-if="sales_order" t-attf-href="/my/quotes?{{ keep_query() }}">Presupuestos</a>
+                    <t t-else="">Presupuestos</t>
+                </li>
+                <li t-if="page_name == 'order' or sales_order and sales_order.state not in ('sent', 'cancel', 'request')">
+                    <a t-if="sales_order" t-attf-href="/my/orders?{{ keep_query() }}">Sales Orders</a>
+                    <t t-else="">Sales Orders</t>
+                </li>
+                <li t-if="sales_order">
+                    <t t-if="sales_order.state in ('sent', 'cancel', 'request')">Presupuesto:</t>
+                    <t t-else="">Order</t>
+                    <t t-esc="sales_order.name"/>
+                </li>
+            </xpath>
+        </template>
+
     </data>
 </odoo>
